@@ -1,0 +1,29 @@
+# CoCo-specific values for trustee chart
+# This file contains configuration specific to Confidential Containers deployment
+# Loaded via extraValueFiles when using Git branch deployment
+
+# Secret store configuration for External Secrets Operator
+# Points to the ClusterSecretStore that knows how to connect to Vault
+secretStore:
+  name: vault-backend
+  kind: ClusterSecretStore
+
+kbs:
+  # Enable Intel TDX attestation support
+  tdx:
+    enabled: true
+    collateralService: "https://api.trustedservices.intel.com/sgx/certification/v4/"
+
+  # Secret resources accessible to trustee from Vault
+  # NOTE: When adding new CoCo workloads to coco.workloads in the pattern,
+  # you must also add corresponding spire-cert-{workload} and spire-key-{workload} entries here
+  secretResources:
+    - name: "kbsres1"
+      key: "secret/data/hub/kbsres1"
+    - name: "passphrase"
+      key: "secret/data/hub/passphrase"
+    # SPIRE x509pop certificates per workload type
+    - name: "spire-cert-qtodo"
+      key: "secret/data/pushsecrets/spire-cert-qtodo"
+    - name: "spire-key-qtodo"
+      key: "secret/data/pushsecrets/spire-key-qtodo"
