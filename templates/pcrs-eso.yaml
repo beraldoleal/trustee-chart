@@ -1,0 +1,22 @@
+---
+apiVersion: "external-secrets.io/v1beta1"
+kind: ExternalSecret
+metadata: 
+  annotations:
+    argocd.argoproj.io/sync-wave: "1"
+  name: securitypolicy-eso
+  namespace: trustee-operator-system
+spec:
+  refreshInterval: 15s
+  secretStoreRef:
+    name: {{ .Values.secretStore.name }}
+    kind: {{ .Values.secretStore.kind }}
+  data:
+  target:
+    name: pcr_stash
+    template:
+      type: generic
+  dataFrom:
+  - extract:
+      key: 'secret/data/hub/pcrStash'
+'
