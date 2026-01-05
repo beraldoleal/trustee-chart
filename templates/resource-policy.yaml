@@ -7,9 +7,11 @@ data:
   policy.rego: |
     package policy
     import rego.v1
-
+  {{- if .Values.global.coco.secured }}
     default allow = true
-
+  {{- else }}
+    default allow = false
+  {{- end  }}
     allow if {
         input["submods"]["cpu0"]["ear.status"] == "affirming"
     }

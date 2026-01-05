@@ -1,3 +1,4 @@
+{{ if not .Values.global.coco.secured }}
 apiVersion: v1
 kind: ConfigMap
 metadata:
@@ -7,6 +8,6 @@ metadata:
   namespace: trustee-operator-system
 data:
   reference-values.json: |
-      [
-      ]
-
+    [
+    ]
+{{ end }}
