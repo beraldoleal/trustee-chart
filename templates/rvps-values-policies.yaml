@@ -39,7 +39,7 @@ spec:
                     "name": "tdx_pcr03",
                     "expiration": "2027-12-12T00:00:00Z",
                     "value": [
-                      "{{ `{{ (fromJson (fromSecret 'trustee-operator-system' 'pcr_stash' 'json' | toLiteral)).measurments.sha256.pcr03 }}` }}"
+                      "{{ `{{ (fromJson (fromSecret 'trustee-operator-system' 'pcr-stash' 'json' | toLiteral)).measurments.sha256.pcr03 }}` }}"
                     ]
                   },
                   {

@@ -13,7 +13,7 @@ spec:
     kind: {{ .Values.secretStore.kind }}
   data:
   target:
-    name: pcr_stash
+    name: pcr-stash
     template:
       type: generic
   dataFrom:
