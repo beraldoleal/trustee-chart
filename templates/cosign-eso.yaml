@@ -5,7 +5,7 @@ kind: ExternalSecret
 metadata: 
   annotations:
     argocd.argoproj.io/sync-wave: "1"
-  name: securitypolicy-eso
+  name: cosigned-eso
   namespace: trustee-operator-system
 spec:
   refreshInterval: 15s
