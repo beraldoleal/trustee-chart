@@ -1,4 +1,4 @@
-{{ if .Values.global.coco.secured }}
+{{ if .Values.global.coco.secured == true }}
 ---
 apiVersion: policy.open-cluster-management.io/v1
 kind: Policy

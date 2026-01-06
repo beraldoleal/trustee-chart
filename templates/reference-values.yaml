@@ -1,4 +1,4 @@
-{{ if not .Values.global.coco.secured }}
+{{ if not .Values.global.coco.secured == true }}
 apiVersion: v1
 kind: ConfigMap
 metadata:
