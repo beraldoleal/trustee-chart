@@ -16,28 +16,89 @@ spec:
       spec:
         remediationAction: enforce
         severity: medium
-        object-templates-raw: |
-          {{ `{{- $pcrData := (fromJson (fromSecret "trustee-operator-system" "pcr-stash" "json" | toLiteral)).measurments.sha256 }}` }}
-          {{ `{{- $pcr8Hash := fromConfigMap "imperative" "initdata" "PCR8_HASH" }}` }}
-          apiVersion: v1
-          kind: ConfigMap
-          metadata:
-            name: rvps-reference-values
-            namespace: trustee-operator-system
-          data:
-            reference-values.json: |
-              [
-                {"name": "snp_pcr03", "expiration": "2027-12-12T00:00:00Z", "value": ["{{ `{{ $pcrData.pcr03 }}` }}"]},
-                {"name": "tdx_pcr03", "expiration": "2027-12-12T00:00:00Z", "value": ["{{ `{{ $pcrData.pcr03 }}` }}"]},
-                {"name": "snp_pcr08", "expiration": "2027-12-12T00:00:00Z", "value": ["{{ `{{ $pcr8Hash }}` }}"]},
-                {"name": "tdx_pcr08", "expiration": "2027-12-12T00:00:00Z", "value": ["{{ `{{ $pcr8Hash }}` }}"]},
-                {"name": "snp_pcr09", "expiration": "2027-12-12T00:00:00Z", "value": ["{{ `{{ $pcrData.pcr09 }}` }}"]},
-                {"name": "tdx_pcr09", "expiration": "2027-12-12T00:00:00Z", "value": ["{{ `{{ $pcrData.pcr09 }}` }}"]},
-                {"name": "snp_pcr11", "expiration": "2027-12-12T00:00:00Z", "value": ["{{ `{{ $pcrData.pcr11 }}` }}"]},
-                {"name": "tdx_pcr11", "expiration": "2027-12-12T00:00:00Z", "value": ["{{ `{{ $pcrData.pcr11 }}` }}"]},
-                {"name": "snp_pcr12", "expiration": "2027-12-12T00:00:00Z", "value": ["{{ `{{ $pcrData.pcr12 }}` }}"]},
-                {"name": "tdx_pcr12", "expiration": "2027-12-12T00:00:00Z", "value": ["{{ `{{ $pcrData.pcr12 }}` }}"]}
-              ]
+        object-templates:
+
+        - complianceType: mustonlyhave
+          objectDefinition:
+            apiVersion: v1
+            kind: ConfigMap
+            metadata:
+              name: rvps-reference-values
+              namespace: trustee-operator-system
+            data:
+              reference-values.json: |
+                [
+                  {
+                    "name": "snp_pcr03",
+                    "expiration": "2027-12-12T00:00:00Z",
+                    "value": [
+                      "{{ `{{ (fromJson (fromSecret 'trustee-operator-system' 'pcr-stash' 'json' | toLiteral)).measurments.sha256.pcr03 }}` }}"
+                    ]
+                  },
+                  {
+                    "name": "tdx_pcr03",
+                    "expiration": "2027-12-12T00:00:00Z",
+                    "value": [
+                      "{{ `{{ (fromJson (fromSecret 'trustee-operator-system' 'pcr-stash' 'json' | toLiteral)).measurments.sha256.pcr03 }}` }}"
+                    ]
+                  },
+                  {
+                    "name": "snp_pcr08",
+                    "expiration": "2027-12-12T00:00:00Z",
+                    "value": [
+                      "{{ `{{ fromConfigMap 'imperative' 'initdata' 'PCR8_HASH' }}` }}"
+                    ]
+                  },
+                  {
+                    "name": "tdx_pcr08",
+                    "expiration": "2027-12-12T00:00:00Z",
+                    "value": [
+                      "{{ `{{ fromConfigMap 'imperative' 'initdata' 'PCR8_HASH' }}` }}"
+                    ]
+                  },
+                  {
+                    "name": "snp_pcr09",
+                    "expiration": "2027-12-12T00:00:00Z",
+                    "value": [
+                      "{{ `{{ (fromJson (fromSecret 'trustee-operator-system' 'pcr-stash' 'json' | toLiteral)).measurments.sha256.pcr09 }}` }}"
+                    ]
+                  },
+                  {
+                    "name": "tdx_pcr09",
+                    "expiration": "2027-12-12T00:00:00Z",
+                    "value": [
+                      "{{ `{{ (fromJson (fromSecret 'trustee-operator-system' 'pcr-stash' 'json' | toLiteral)).measurments.sha256.pcr09 }}` }}"
+                    ]
+                  },
+                  {
+                    "name": "snp_pcr11",
+                    "expiration": "2027-12-12T00:00:00Z",
+                    "value": [
+                      "{{ `{{ (fromJson (fromSecret 'trustee-operator-system' 'pcr-stash' 'json' | toLiteral)).measurments.sha256.pcr11 }}` }}"
+                    ]
+                  },
+                  {
+                    "name": "tdx_pcr11",
+                    "expiration": "2027-12-12T00:00:00Z",
+                    "value": [
+                      "{{ `{{ (fromJson (fromSecret 'trustee-operator-system' 'pcr-stash' 'json' | toLiteral)).measurments.sha256.pcr11 }}` }}"
+                    ]
+                  },
+                  {
+                    "name": "snp_pcr12",
+                    "expiration": "2027-12-12T00:00:00Z",
+                    "value": [
+                      "{{ `{{ (fromJson (fromSecret 'trustee-operator-system' 'pcr-stash' 'json' | toLiteral)).measurments.sha256.pcr12 }}` }}"
+                    ]
+                  },
+                  {
+                    "name": "tdx_pcr12",
+                    "expiration": "2027-12-12T00:00:00Z",
+                    "value": [
+                      "{{ `{{ (fromJson (fromSecret 'trustee-operator-system' 'pcr-stash' 'json' | toLiteral)).measurments.sha256.pcr12 }}` }}"
+                    ]
+                  }
+                ]
 ---
 apiVersion: policy.open-cluster-management.io/v1
 kind: PlacementBinding
