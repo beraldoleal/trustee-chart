@@ -26,21 +26,7 @@ spec:
               name: rvps-reference-values
               namespace: trustee-operator-system
             data:
-              reference-values.json: |
-                {{`{{- $pcrData := (fromJson (fromSecret "trustee-operator-system" "pcr-stash" "json" | toLiteral)).measurments.sha256 -}}`}}
-                {{`{{- $pcr8Hash := fromConfigMap "imperative" "initdata" "PCR8_HASH" -}}`}}
-                {{`{{ toJson (list
-                  (dict "name" "snp_pcr03" "expiration" "2027-12-12T00:00:00Z" "value" (list $pcrData.pcr03))
-                  (dict "name" "tdx_pcr03" "expiration" "2027-12-12T00:00:00Z" "value" (list $pcrData.pcr03))
-                  (dict "name" "snp_pcr08" "expiration" "2027-12-12T00:00:00Z" "value" (list $pcr8Hash))
-                  (dict "name" "tdx_pcr08" "expiration" "2027-12-12T00:00:00Z" "value" (list $pcr8Hash))
-                  (dict "name" "snp_pcr09" "expiration" "2027-12-12T00:00:00Z" "value" (list $pcrData.pcr09))
-                  (dict "name" "tdx_pcr09" "expiration" "2027-12-12T00:00:00Z" "value" (list $pcrData.pcr09))
-                  (dict "name" "snp_pcr11" "expiration" "2027-12-12T00:00:00Z" "value" (list $pcrData.pcr11))
-                  (dict "name" "tdx_pcr11" "expiration" "2027-12-12T00:00:00Z" "value" (list $pcrData.pcr11))
-                  (dict "name" "snp_pcr12" "expiration" "2027-12-12T00:00:00Z" "value" (list $pcrData.pcr12))
-                  (dict "name" "tdx_pcr12" "expiration" "2027-12-12T00:00:00Z" "value" (list $pcrData.pcr12))
-                ) }}`}}
+              reference-values.json: '{{`{{- $pcrData := (fromJson (fromSecret "trustee-operator-system" "pcr-stash" "json" | toLiteral)).measurements.sha256 -}}{{- $pcr8Hash := fromConfigMap "imperative" "initdata" "PCR8_HASH" -}}{{ toJson (list (dict "name" "snp_pcr03" "expiration" "2027-12-12T00:00:00Z" "value" (list $pcrData.pcr03)) (dict "name" "tdx_pcr03" "expiration" "2027-12-12T00:00:00Z" "value" (list $pcrData.pcr03)) (dict "name" "snp_pcr08" "expiration" "2027-12-12T00:00:00Z" "value" (list $pcr8Hash)) (dict "name" "tdx_pcr08" "expiration" "2027-12-12T00:00:00Z" "value" (list $pcr8Hash)) (dict "name" "snp_pcr09" "expiration" "2027-12-12T00:00:00Z" "value" (list $pcrData.pcr09)) (dict "name" "tdx_pcr09" "expiration" "2027-12-12T00:00:00Z" "value" (list $pcrData.pcr09)) (dict "name" "snp_pcr11" "expiration" "2027-12-12T00:00:00Z" "value" (list $pcrData.pcr11)) (dict "name" "tdx_pcr11" "expiration" "2027-12-12T00:00:00Z" "value" (list $pcrData.pcr11)) (dict "name" "snp_pcr12" "expiration" "2027-12-12T00:00:00Z" "value" (list $pcrData.pcr12)) (dict "name" "tdx_pcr12" "expiration" "2027-12-12T00:00:00Z" "value" (list $pcrData.pcr12))) }}`}}'
 ---
 apiVersion: policy.open-cluster-management.io/v1
 kind: PlacementBinding
