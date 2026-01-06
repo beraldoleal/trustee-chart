@@ -7,7 +7,7 @@ data:
   policy.rego: |
     package policy
     import rego.v1
-  {{- if .Values.global.coco.secured == true }}
+  {{- if eq .Values.global.coco.secured  "true" }}
     default allow = true
   {{- else }}
     default allow = false
