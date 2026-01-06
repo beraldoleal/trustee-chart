@@ -16,6 +16,7 @@ global:
     securityPolicy: secret/data/hub/securityPolicyConfig
     securityPolicyFlavour: "insecure" # insecure, signed or reject is expected.
     attestationStatus: secret/data/hub/attestationStatus
+    secured: false # true or false. If true, the cluster will be secured. If false, the cluster will be insecure.
 
 # KBS (Key Broker Service) configuration
 kbs:
