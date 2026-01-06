@@ -17,7 +17,7 @@ spec:
         remediationAction: enforce
         severity: medium
         object-templates-raw: |
-          {{ `{{- $pcrData := (fromJson (fromSecret "trustee-operator-system" "pcr_stash" "json" | toLiteral)).measurments.sha256 }}` }}
+          {{ `{{- $pcrData := (fromJson (fromSecret "trustee-operator-system" "pcr-stash" "json" | toLiteral)).measurments.sha256 }}` }}
           {{ `{{- $pcr8Hash := fromConfigMap "imperative" "initdata" "PCR8_HASH" }}` }}
           apiVersion: v1
           kind: ConfigMap
