@@ -10,7 +10,7 @@ data:
   {{- if eq .Values.global.coco.secured true }}
     default allow = true
   {{- else }}
-    default allow = false
+    default allow = true
   {{- end  }}
     allow if {
         input["submods"]["cpu0"]["ear.status"] == "affirming"
