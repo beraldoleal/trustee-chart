@@ -8,3 +8,6 @@ data:
     package policy
     import rego.v1
     default allow = true
+    allow {
+      input["submods"]["cpu0"]["ear.status"] == "affirming"
+    }
