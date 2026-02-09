@@ -3,6 +3,8 @@ kind: KbsConfig
 metadata:
   name: kbsconfig
   namespace: trustee-operator-system
+  annotations:
+    argocd.argoproj.io/sync-wave: "7"
 spec:
   kbsConfigMapName: kbs-config
   kbsAuthSecretName: kbs-auth-public-key

@@ -4,6 +4,8 @@ apiVersion: policy.open-cluster-management.io/v1
 kind: Policy
 metadata:
   name: rvps-policy
+  annotations:
+    argocd.argoproj.io/sync-wave: "6"
 spec:
   remediationAction: enforce
   disabled: false
@@ -40,6 +42,7 @@ metadata:
   name: rvps-placement-binding
   annotations:
     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+    argocd.argoproj.io/sync-wave: "6"
 placementRef:
   name: rvps-placement-rule
   kind: PlacementRule
@@ -53,6 +56,8 @@ apiVersion: apps.open-cluster-management.io/v1
 kind: PlacementRule
 metadata:
   name: rvps-placement-rule
+  annotations:
+    argocd.argoproj.io/sync-wave: "6"
 spec:
   clusterConditions:
     - status: 'True'

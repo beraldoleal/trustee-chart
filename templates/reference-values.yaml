@@ -2,10 +2,10 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  annotations:
-    argocd.argoproj.io/sync-wave: "1"
   name: rvps-reference-values
   namespace: trustee-operator-system
+  annotations:
+    argocd.argoproj.io/sync-wave: "4"
 data:
   reference-values.json: |
     [

@@ -6,6 +6,7 @@ metadata:
   namespace: trustee-operator-system
   annotations:
     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+    argocd.argoproj.io/sync-wave: "3"
 spec:
   secretName: attestation-cert
   duration: 8760h # 1 year

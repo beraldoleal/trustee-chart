@@ -3,6 +3,8 @@ kind: ConfigMap
 metadata:
   name: kbs-config
   namespace: trustee-operator-system
+  annotations:
+    argocd.argoproj.io/sync-wave: "4"
 data:
   kbs-config.toml: |
     [http_server]

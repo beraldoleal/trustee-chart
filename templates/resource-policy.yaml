@@ -3,6 +3,8 @@ kind: ConfigMap
 metadata:
   name: resource-policy
   namespace: trustee-operator-system
+  annotations:
+    argocd.argoproj.io/sync-wave: "4"
 data:
   policy.rego: |
     package policy
