@@ -13,7 +13,6 @@ data:
     default hardware := 97
     default configuration := 36
 
-
     ## miminimal but reliable attestation policy
     ## hardware and firmware changes. This is not in our control. It's up to the user to update acceptable measurements
     ## In conjuction with verification with the service provider.
