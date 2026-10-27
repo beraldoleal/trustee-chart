@@ -24,8 +24,10 @@ spec:
     - "attestation-status"
   kbsHttpsKeySecretName: kbs-https-key
   kbsHttpsCertSecretName: kbs-https-certificate
+  {{- if eq .Values.global.coco.securityPolicyFlavour "signed" }}
   kbsResourcePolicyConfigMapName: resource-policy
   kbsAttestationPolicyConfigMapName: attestation-policy
+  {{- end }}
   kbsAttestationCertSecretName: attestation-cert
   kbsAttestationKeySecretName: attestation-cert
 
