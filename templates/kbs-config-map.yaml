@@ -13,7 +13,7 @@ data:
     private_key = "/etc/https-key/tls.key"
     certificate = "/etc/https-cert/tls.crt"
     [admin]
-    insecure_api = false
+    authorization_mode = "AuthenticatedAuthorization"
     auth_public_key = "/etc/auth-secret/publicKey"
 
     [attestation_token]
