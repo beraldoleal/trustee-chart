@@ -49,5 +49,12 @@ data:
     type = "LocalFs"
     dir_path = "/opt/confidential-containers/kbs/repository"
 
+    {{- if .Values.kbs.spire.enabled }}
+    [[plugins]]
+    name = "spire"
+    admin_socket_path = "{{ .Values.kbs.spire.adminSocketPath }}"
+    attested_selector_value = "{{ .Values.kbs.spire.attestedSelectorValue }}"
+    {{- end }}
+
     [policy_engine]
     policy_path = "/opt/confidential-containers/opa/policy.rego"

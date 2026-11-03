@@ -43,6 +43,14 @@ kbs:
   # exist in the trustee-operator-system namespace.
   extraSecrets: []
 
+  # SPIRE Delegated Identity Plugin configuration
+  # Enables KBS to retrieve X.509 SVIDs on behalf of attested CoCo workloads
+  # via the SPIRE Delegated Identity API (admin socket).
+  spire:
+    enabled: false
+    adminSocketPath: "/run/spire/sockets/admin.sock"
+    attestedSelectorValue: "true"
+
   # Intel TDX (Trust Domain Extensions) configuration
   tdx:
     # Enable TDX attestation support
