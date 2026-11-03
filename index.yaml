@@ -1,0 +1,18 @@
+apiVersion: v1
+entries:
+  trustee:
+  - apiVersion: v2
+    created: "2026-11-03T22:45:56.557084Z"
+    description: A Helm chart to provide an opinionated deployment of Trustee in a
+      validated pattern
+    digest: 3d3025b1491dea3dcd39808f05dafb32fc20196914befa6e53825143ea8c506a
+    keywords:
+    - pattern
+    - trustee
+    - confidential-computing
+    - confidential-containers
+    name: trustee
+    urls:
+    - https://beraldoleal.github.io/trustee-chart/trustee-0.1.0.tgz
+    version: 0.1.0
+generated: "2026-11-03T22:45:56.551858562Z"
