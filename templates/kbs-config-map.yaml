@@ -51,7 +51,7 @@ data:
     storage_type = "LocalFs"
 
     [storage_backend.backends.local_fs]
-    dir_path = "/opt/confidential-containers/storage"
+    dir_path = "/opt/confidential-containers/kbs/repository"
 
     {{- if .Values.kbs.spire.enabled }}
     [[plugins]]
